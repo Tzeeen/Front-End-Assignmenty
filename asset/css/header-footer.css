@@ -1,0 +1,127 @@
+body {
+    font-family: 'Orbitron', Arial, sans-serif;
+    padding: 0;
+    margin: 0;
+    line-height: 1.6;
+    color: rgb(157, 157, 157);
+    background-color: rgb(255, 255, 255);
+    padding-top: 70px;
+    
+    filter: blur(10px);
+    transition: filter 1s ease-in-out; /* 1 秒渐变清晰 */
+}
+
+/* 点击超链接后的模糊效果 */
+.blurred {
+    filter: blur(10px);
+    transition: filter 1s ease-in-out;
+}
+
+footer {
+    background: linear-gradient(270deg, #00eaff, #1100ff, #ff0000, #ff00c8);
+    background-size: 300% 300%;
+    animation: gradientAnimation 10s ease infinite;
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    margin-bottom: -8px;
+    bottom: 0;
+    box-shadow: 0px -5px 100px 9px rgba(223, 58, 108, 0.305);
+
+    p {
+        margin: -15px;
+    }
+}
+
+/* 标题样式 */
+.Title {
+    background: linear-gradient(270deg, #00eaff, #1100ff, #ff0000, #ff00c8);
+    background-size: 300% 300%;
+    animation: gradientAnimation 10s ease infinite;
+    color: #fff;
+    text-align: center;
+    width: 100%;
+    padding-top: 5px;
+    box-shadow: 0px 10px 100px 9px rgba(105, 58, 223, 0.547);
+    z-index: 999;
+    margin-top: -15px;
+
+}
+
+@keyframes gradientAnimation {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.group {
+    margin-bottom: 1.5rem;
+}
+
+.tab {
+    flex: 1 1 300px;
+    max-width: 350px;
+    margin-bottom: 2rem;
+    background: linear-gradient(270deg, #dcfcfff4, #dedcffec, #ffd1d1, #ffe7fa);
+    background-size: 300% 300%;
+    animation: gradientAnimation 10s ease infinite;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0px -5px 100px 9px rgb(255, 255, 255);
+
+    .card {
+        padding: 1.5rem;
+        text-align: center;
+    }
+
+    .picture {
+        width: 100%;
+        height: 300px;
+        border-radius: 25px;
+        object-fit: contain;
+        margin-bottom: 1.5rem;
+    }
+
+    iframe {
+
+        border-radius: 15px;
+    }
+
+    .title {
+        color: #2c3e50;
+        font-size: 1.4rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .description {
+        color: rgba(0, 0, 0, 0.750);
+    }
+}
+
+.tab:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
