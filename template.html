@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - My Website</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Audiowide&family=Press+Start+2P&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./asset/css/dark-theme.css" />
+    <link rel="stylesheet" type="text/css" href="./asset/css/light-theme.css" />
+    <link rel="stylesheet" type="text/css" href="./asset/css/style.css" />
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <!-- Logo -->
+                <a href="index.html">
+                    <img src="./logo.png" alt="Logo" class="logo">
+                </a>
+    
+                <!-- Use a table to create a horizontal layout. -->
+                <table>
+                    <tr>
+                        <!-- Search box -->
+                        <th>
+                            <div class="search-container position-relative">
+                                <input type="text" id="search-box" class="form-control" placeholder="Search News..."
+                                    onkeyup="showSuggestions()" style="border-radius:15px; margin-left:-25px;">
+                                <div id="suggestions" class="list-group position-absolute w-100"></div>
+                            </div>
+                        </th>
+    
+                        <!-- Menu -->
+                        <th>
+                            <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+                            <label for="menu-toggle" class="menu-icon">☰</label>
+                            <ul class="nav-menu">
+                                <li><a href="about.html">About Us</a></li>
+                                <li><a href="news.html">News</a></li>
+                                <li><a href="tools.html">Tools</a></li>
+                                <li><a href="resources.html">Resource Tutorial</a></li>
+                                <li><a href="forum.html">Forum</a></li>
+                                <li><a href="chatbot.html">Chatbot</a></li>
+                                <li><a href="contact.html">Contact Us</a></li>
+                            </ul>
+                        </th>
+    
+                        <!-- Clear Cache Button -->
+                        <th>
+                            <button id="clear-storage" class="clear-storage" style="
+                    font-size: 1.2rem;
+                    cursor: pointer;
+                    border: none;
+                    background: transparent;
+                    margin-right: -23px;" title="Clear all Cookies and LocalStorage.">🗑️</button>
+                        </th>
+    
+                        <!-- Theme Toggle Button -->
+                        <th>
+                            <button id="theme-toggle" class="theme-toggle" title="Theme"
+                                style="margin-right: -20px;">🌙</button>
+                        </th>
+                    </tr>
+                </table>
+            </div>
+        </nav>
+    </header>
+    
+    <div id="cookie-popup" class="cookie-popup" style="display:none;">
+        <span style="color:black;">This website uses cookies to enhance the user experience. Do you accept?</span>
+        <br>
+        <button class="accept-btn" onclick="acceptCookies()">Agree</button>
+        <button class="decline-btn" onclick="declineCookies()">Disagree</button>
+    </div>
+
+    <main>
+        <section class="Title">
+
+            <div
+                style="background: url('./asset/media/gif/picture1.gif') center/cover no-repeat; padding: 200px 20px; position: relative;">
+
+                <p style="font-size: 1.2rem; opacity: 0.9; color:white;">
+                    Discover the future of artificial intelligence.
+                </p>
+            </div>
+
+            <br>
+            <div class="grid">
+                <div class="row">
+                    <div class="tab">
+                        <div class="card">
+                            <img src="/asset/media/gif/1_wJt3v7Gs46uticTUj4y9zg.gif" width="100%" height="60%"
+                                alt="Machine Learning"><br><br>
+                            <h3 class="title">Machine Learning</h3>
+                            <p class="description">AI-powered algorithms that learn and adapt</p>
+                        </div>
+                    </div>
+                    <div class="tab">
+                        <div class="card">
+                            <img src="/asset/media/gif/deep_learning.gif" width="100%" height="60%"
+                                alt="Deep Learning"><br><br>
+                            <h3 class="title">Deep Learning</h3>
+                            <p class="description">Neural networks that mimic the human brain.</p>
+                        </div>
+                    </div>
+                    <div class="tab">
+                        <div class="card">
+                            <img src="/asset/media/gif/ethnic.gif" width="100%" height="60%" alt="AI ethics"><br><br>
+                            <h3 class="title">AI Ethics</h3>
+                            <p class="description">Exploring responsible AI development</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section style="padding-top:5%;">>
+
+        <div class="row">
+            <!-- 这个格子是全屏的 -->
+            <div class="tab full-width">
+                <div class="card">
+                    <img src="/asset/media/gif/1_wJt3v7Gs46uticTUj4y9zg.gif" width="100%" height="60%"
+                        alt="Machine Learning">
+                    <h3 class="title">The Impact of Technology on Modern Society</h3>
+                    <p class="description">
+                        Technology is a driving force behind innovation, shaping industries...
+                    </p>
+                </div>
+            </div>
+
+            <!-- 这个格子保持原来的尺寸 -->
+            <div class="tab">
+                <div class="card">
+                    <img src="/asset/media/gif/deep_learning.gif" width="100%" height="60%" alt="Deep Learning">
+                    <h3 class="title">The Role of Technology in Advancing the Future</h3>
+                    <p class="description">
+                        Technology continues to revolutionize the way we live, work, and interact...
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- 这个格子是全屏的 -->
+            <div class="tab full-width">
+                <div class="card">
+                    <img src="/asset/media/gif/1_wJt3v7Gs46uticTUj4y9zg.gif" width="100%" height="60%"
+                        alt="Machine Learning">
+                    <h3 class="title">The Impact of Technology on Modern Society</h3>
+                    <p class="description">
+                        Technology is a driving force behind innovation, shaping industries...
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <section style="padding: 5% 2%; text-align: center;">
+            <h2>Introduction to AI</h2>
+            <p>Watch this video to understand how AI is changing the world.</p>
+            <video controls autoplay muted loop
+                style="border-radius: 25px; box-shadow: 0px -5px 100px 9px rgba(94, 3, 206, 0.309); max-width: 95%; height: auto;">
+                <source
+                    src="./asset/media/video/How will Artificial Intelligence and Internet of Things change the world_.mp4"
+                    type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </section>
+    </main>
+
+    <script>
+
+        // 手动输入 news 目录下的 HTML 文件
+        const newsPages = [
+            "tech-news.html",
+            "sports-update.html",
+            "politics.html",
+            "business.html",
+            "entertainment.html"
+        ];
+
+        function showSuggestions() {
+            let query = document.getElementById("search-box").value.toLowerCase();
+            let suggestionsDiv = document.getElementById("suggestions");
+            suggestionsDiv.innerHTML = ""; // 清空之前的建议
+
+            if (query.length === 0) {
+                return; // 如果没有输入内容，就不显示建议
+            }
+
+            let matches = newsPages.filter(page => page.toLowerCase().includes(query));
+
+            if (matches.length > 0) {
+                matches.forEach(match => {
+                    let item = document.createElement("a");
+                    item.href = `news/${match}`;
+                    item.classList.add("list-group-item", "list-group-item-action");
+                    item.innerText = match.replace(".html", ""); // 去掉 .html 显示
+                    suggestionsDiv.appendChild(item);
+                });
+            } else {
+                let noMatch = document.createElement("div");
+                noMatch.classList.add("list-group-item");
+                noMatch.innerText = "No results found";
+                suggestionsDiv.appendChild(noMatch);
+            }
+        }
+
+        ////////////////////////////////////////////////////
+
+        // Show the cookie popup if no consent is found
+        //if (getCookie("cookieConsent") === null) {
+        if (getLocalStorage ("cookieConsent") === null) {   
+            document.getElementById("cookie-popup").style.display = "block";
+        }
+
+        // Wait for DOM to be fully loaded
+        document.addEventListener("DOMContentLoaded", () => {
+            // Remove initial blur after page renders
+            setTimeout(() => {
+                document.body.style.filter = "blur(0px)";
+            }, 50);
+
+            // Load theme from cookies, default to dark mode
+            let theme = getCookie("theme") || localStorage.getItem('theme') || "dark";
+
+            // Handle theme style application
+            const themeStyleElement = document.getElementById("theme-style");
+            if (themeStyleElement) {
+                // If using a single theme style element with id
+                themeStyleElement.setAttribute("href", theme + "-theme.css");
+            } else {
+                // If using multiple link elements
+                applyTheme(theme);
+            }
+
+            // Set the theme toggle button icon
+            const themeToggleBtn = document.getElementById("theme-toggle");
+            if (themeToggleBtn) {
+                themeToggleBtn.textContent = theme === "dark" ? "🌙" : "☀️";
+                themeToggleBtn.addEventListener("click", toggleTheme);
+            }
+
+            // Set up clear storage button
+            const clearStorageBtn = document.getElementById("clear-storage");
+            if (clearStorageBtn) {
+                clearStorageBtn.addEventListener("click", clearAllData);
+            }
+
+            // Load header and footer if needed
+            loadHeaderFooter();
+        });
+
+        // Delegate event listener for all link clicks to add transition effect
+        document.addEventListener("click", function (event) {
+            let link = event.target.closest("a"); // Find closest <a> tag
+            if (link && link.href) {
+                event.preventDefault(); // Prevent default navigation
+                document.body.classList.add("blurred"); // Add blur effect
+
+                // Navigate after delay for transition effect
+                setTimeout(() => {
+                    window.location.href = link.href; // Navigate after 1 second
+                }, 1000);
+            }
+        });
+
+        /**
+         * Toggle between light and dark themes
+         * Changes CSS file, updates icon, and saves preference
+         */
+        function toggleTheme() {
+            let currentTheme;
+            const themeStyleElement = document.getElementById("theme-style");
+
+            // Determine current theme based on available elements
+            if (themeStyleElement) {
+                // If using a dedicated theme style element
+                currentTheme = themeStyleElement.getAttribute("href").includes("dark") ? "dark" : "light";
+            } else {
+                // If using multiple link elements
+                currentTheme = document.querySelector('link[href*="theme"]:not([disabled])').getAttribute('href').includes('dark') ? 'dark' : 'light';
+            }
+
+            // Set new theme to opposite of current
+            const newTheme = currentTheme === "dark" ? "light" : "dark";
+
+            // Check if cookies are accepted before saving preference
+            //if (getCookie("cookieConsent") === "accepted") {
+            if (getLocalStorage("cookieConsent") === "accepted") {    
+                // Add blur effect during theme transition
+                document.body.style.filter = "blur(5px)";
+
+                // Apply theme change with transition effect
+                setTimeout(() => {
+                    // Apply theme based on available elements
+                    if (themeStyleElement) {
+                        themeStyleElement.setAttribute("href", newTheme + "-theme.css");
+                    } else {
+                        applyTheme(newTheme);
+                    }
+
+                    // Update theme toggle button
+                    const themeToggleBtn = document.getElementById("theme-toggle");
+                    if (themeToggleBtn) {
+                        themeToggleBtn.textContent = newTheme === "dark" ? "🌙" : "☀️";
+                    }
+
+                    // Save theme preference in cookies
+                    setCookie("theme", newTheme, 365);
+                    // Also save in localStorage as fallback
+                    localStorage.setItem('theme', newTheme);
+
+                    // Remove blur after theme change
+                    setTimeout(() => {
+                        document.body.style.filter = "blur(0px)";
+                    }, 300);
+                }, 200);
+            } else {
+                // If cookies not accepted, prompt user
+                alert("Please accept the cookies to save your theme settings!");
+            }
+        }
+
+        /**
+         * Apply the specified theme by updating CSS links
+         * @param {string} theme - 'dark' or 'light'
+         */
+        function applyTheme(theme) {
+            // Disable all theme stylesheets
+            const themeLinks = document.querySelectorAll('link[href*="theme"]');
+            themeLinks.forEach(link => {
+                link.disabled = true;
+            });
+
+            // Enable only the selected theme
+            const activeTheme = document.querySelector(`link[href*="${theme}-theme"]`);
+            if (activeTheme) {
+                activeTheme.disabled = false;
+            }
+
+            // Update theme toggle button icon
+            const themeToggleBtn = document.getElementById("theme-toggle");
+            if (themeToggleBtn) {
+                themeToggleBtn.textContent = theme === "dark" ? "🌙" : "☀️";
+                themeToggleBtn.title = theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode";
+            }
+        }
+
+        /**
+         * Accept cookies and save user preference
+         */
+        function acceptCookies() {
+            //setCookie("cookieConsent", "accepted", 365);
+            setLocalStorage("cookieConsent", "accepted", 365);
+            document.getElementById("cookie-popup").style.display = "none";
+
+            // Save current theme to cookie now that we have consent
+            const currentTheme = localStorage.getItem('theme') || "dark";
+            setCookie("theme", currentTheme, 365);
+        }
+
+        /**
+         * Decline cookies but remember choice
+         */
+        function declineCookies() {
+            //setCookie("cookieConsent", "declined", 365);
+            setLocalStorage("cookieConsent", "declined", 365);
+            document.getElementById("cookie-popup").style.display = "none";
+        }
+
+        /**
+         * Clear all stored data including cookies and localStorage
+         * Confirms with user before clearing
+         */
+        function clearAllData() {
+            if (confirm("Are you sure you want to clear all Cookies and LocalStorage data? This action cannot be undone!")) {
+                // Clear all cookies
+                document.cookie.split(";").forEach(cookie => {
+                    document.cookie = cookie.replace(/^ +/, "").replace(/=.*/, "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/");
+                });
+
+                // Clear localStorage
+                localStorage.clear();
+
+                // Clear sessionStorage
+                sessionStorage.clear();
+
+                alert("All storage data has been cleared!");
+                location.reload(); // Refresh page to apply changes
+            }
+        }
+
+        /**
+         * Set a cookie with the given name, value and expiration days
+         */
+        function setCookie(name, value, days) {
+            let expires = "";
+            if (days) {
+                let date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + value + "; path=/" + expires;
+        }
+
+        /**
+         * Get a cookie value by name
+         * @returns {string|null} Cookie value or null if not found
+         */
+        function getCookie(name) {
+            let nameEQ = name + "=";
+            let ca = document.cookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
+        //////////////////////////////////////////////////////////////
+
+        function setLocalStorage(name, value, days) {
+            let data = { value: value };
+
+            if (days) {
+                let expireDate = new Date();
+                expireDate.setTime(expireDate.getTime() + (days * 24 * 60 * 60 * 1000));
+                data.expiry = expireDate.getTime(); // 过期时间存储为时间戳
+            }
+
+            localStorage.setItem(name, JSON.stringify(data));
+        }
+
+        function getLocalStorage(name) {
+            let item = localStorage.getItem(name);
+            if (!item) return null; // 如果不存在，返回 null
+
+            let data = JSON.parse(item);
+
+            // 检查是否设置了过期时间，并且是否已过期
+            if (data.expiry && new Date().getTime() > data.expiry) {
+                localStorage.removeItem(name); // 过期了，删除
+                return null;
+            }
+
+            return data.value; // 返回实际存储的值
+        }
+    </script>
+
+</body>
+
+</html>

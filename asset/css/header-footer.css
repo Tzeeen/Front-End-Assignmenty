@@ -4,16 +4,20 @@ body {
     margin: 0;
     line-height: 1.6;
     color: rgb(157, 157, 157);
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
     padding-top: 70px;
-    
-    filter: blur(10px);
-    transition: filter 1s ease-in-out; /* 1 秒渐变清晰 */
+    position:
 }
 
-/* 点击超链接后的模糊效果 */
-.blurred {
+body {
     filter: blur(10px);
+    /* 初始模糊 */
+    transition: filter 1s ease-in-out;
+}
+
+.blurred {
+    filter: blur(10px) !important;
+    /*没有加important点击连接了不会模糊*/
     transition: filter 1s ease-in-out;
 }
 
@@ -22,16 +26,20 @@ footer {
     background-size: 300% 300%;
     animation: gradientAnimation 10s ease infinite;
     color: #fff;
-    padding: 1rem 0;
     text-align: center;
-    position: fixed;
     width: 100%;
-    margin-bottom: -8px;
-    bottom: 0;
     box-shadow: 0px -5px 100px 9px rgba(223, 58, 108, 0.305);
+    
+    /* 关键部分 */
+    position: fixed; /* 让 footer 固定在可视窗口 */
+    bottom: 0; /* 贴住视口底部 */
+    left: 0;
+    z-index: 9999; /* 确保在最顶层，不被其他元素遮挡 */
 
+    padding: 10px 0; /* 适当的内边距 */
+    
     p {
-        margin: -15px;
+        margin: 0; /* 避免负边距影响布局 */
     }
 }
 
@@ -47,6 +55,50 @@ footer {
     box-shadow: 0px 10px 100px 9px rgba(105, 58, 223, 0.547);
     z-index: 999;
     margin-top: -15px;
+
+    .tab {
+        flex: 1 1 300px;
+        max-width: 350px;
+        margin-bottom: 2rem;
+        background: linear-gradient(270deg, #dcfcfff4, #dedcffec, #ffd1d1, #ffe7fa);
+        background-size: 300% 300%;
+        animation: gradientAnimation 10s ease infinite;
+        border-radius: 10px;
+        box-shadow: 0px -5px 100px 9px rgb(255, 255, 255);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        .card {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .picture {
+            width: 100%;
+            height: 300px;
+            border-radius: 25px;
+            object-fit: contain;
+            margin-bottom: 1.5rem;
+        }
+
+        iframe {
+            border-radius: 15px;
+        }
+
+        .title {
+            color: #2c3e50;
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .description {
+            color: rgba(0, 0, 0, 0.750);
+        }
+
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+    }
 
 }
 
@@ -67,36 +119,25 @@ footer {
     flex-wrap: wrap;
     gap: 2rem;
     justify-content: center;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.group {
-    margin-bottom: 1.5rem;
+    padding-left:10%;
+    padding-right:10%;
 }
 
 .tab {
     flex: 1 1 300px;
     max-width: 350px;
     margin-bottom: 2rem;
-    background: linear-gradient(270deg, #dcfcfff4, #dedcffec, #ffd1d1, #ffe7fa);
+    background: linear-gradient(270deg, #dcfcfff4, #f4fffbec, #ffd1d1, #ffe7fa);
     background-size: 300% 300%;
     animation: gradientAnimation 10s ease infinite;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0px -5px 100px 9px rgb(255, 255, 255);
-
+    
     .card {
         padding: 1.5rem;
         text-align: center;
     }
-
+    
     .picture {
         width: 100%;
         height: 300px;
@@ -104,24 +145,74 @@ footer {
         object-fit: contain;
         margin-bottom: 1.5rem;
     }
-
+    
     iframe {
-
         border-radius: 15px;
     }
-
+    
     .title {
-        color: #2c3e50;
+        color: #00000093;
         font-size: 1.4rem;
         margin-bottom: 0.5rem;
     }
-
+    
     .description {
-        color: rgba(0, 0, 0, 0.750);
+        color: rgba(0, 0, 0, 0.561);
+    }
+    
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
     }
 }
 
-.tab:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+.full-width {
+    width: 80%;
+    /* 适应宽度 */
+    max-width: 1200px;
+    /* 防止超大屏过宽 */
+    margin: 0 auto 2rem auto;
+    /* 居中并增加底部间距 */
+}
+
+/*cookies popup*/
+.cookie-popup {
+    position: fixed;
+    top: 2%;
+    width: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(270deg, #dcfcfff4, #f4fffbec, #ffd1d1, #ffe7fa);
+    background-size: 300% 300%;
+    animation: gradientAnimation 10s ease infinite;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px -5px 100px 9px rgba(255, 27, 141, 0.64);
+    text-align: center;
+    z-index: 9999;
+}
+.cookie-popup button {
+    margin: 5px;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.accept-btn {
+    background: green;
+    color: white;
+}
+.decline-btn {
+    background: red;
+    color: white;
+}
+
+/*theme toggle*/
+.theme-toggle {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: white;
+    margin-left: 10px;
 }

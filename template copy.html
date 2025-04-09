@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - My Website</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Audiowide&family=Press+Start+2P&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./asset/css/dark-theme.css" id="theme-style" />
+    <link rel="stylesheet" type="text/css" href="./asset/css/light-theme.css" disabled />
+    <!-- Meta tags for SEO -->
+    <meta name="description" content="Explore the future of artificial intelligence with our resources and tools">
+    <meta name="keywords" content="AI, machine learning, deep learning, AI ethics, technology">
+</head>
+
+<body>
+    <div id="header-footer"></div>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <a href="index.html" aria-label="Home">
+                    <img src="./logo.png" alt="Website Logo" class="logo">
+                </a>
+
+                <div class="search-container position-relative">
+                    <input type="text" id="search-box" class="form-control" placeholder="Search News..."
+                        aria-label="Search News" autocomplete="off">
+                    <div id="suggestions" class="list-group position-absolute w-100" role="listbox"></div>
+                </div>
+
+                <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+                <label for="menu-toggle" class="menu-icon" aria-label="Toggle navigation menu">☰</label>
+
+                <ul class="nav-menu">
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="tools.html">Tools</a></li>
+                    <li><a href="resources.html">Resource Tutorial</a></li>
+                    <li><a href="forum.html">Forum</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+
+                <button id="clear-storage" class="clear-storage" aria-label="Clear all stored data">🗑️</button>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light theme">🌙</button>
+            </div>
+        </nav>
+    </header>
+
+    <div id="cookie-popup" class="cookie-popup" role="dialog" aria-labelledby="cookie-title">
+        <h2 id="cookie-title" class="visually-hidden">Cookie Consent</h2>
+        <span>This website uses cookies to enhance the user experience. Do you accept?</span>
+        <div class="cookie-buttons">
+            <button class="accept-btn" onclick="acceptCookies()">Agree</button>
+            <button class="decline-btn" onclick="declineCookies()">Disagree</button>
+        </div>
+    </div>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content"
+                style="background: url('./asset/media/gif/picture1.gif') center/cover no-repeat; padding: 200px 20px; position: relative;">
+                <h1>Welcome to the Future of AI</h1>
+                <p style="font-size: 1.2rem; opacity: 0.9; color:white;">
+                    Discover the future of artificial intelligence.
+                </p>
+            </div>
+        </section>
+
+        <section class="featured-topics">
+            <div class="grid">
+                <div class="row">
+                    <div class="tab">
+                        <div class="card">
+                            <img src="./asset/media/gif/1_wJt3v7Gs46uticTUj4y9zg.gif" width="100%" height="auto"
+                                alt="Machine Learning animation" loading="lazy">
+                            <h3 class="title">Machine Learning</h3>
+                            <p class="description">AI-powered algorithms that learn and adapt</p>
+                        </div>
+                    </div>
+                    <div class="tab">
+                        <div class="card">
+                            <img src="./asset/media/gif/deep_learning.gif" width="100%" height="auto"
+                                alt="Deep Learning visualization" loading="lazy">
+                            <h3 class="title">Deep Learning</h3>
+                            <p class="description">Neural networks that mimic the human brain.</p>
+                        </div>
+                    </div>
+                    <div class="tab">
+                        <div class="card">
+                            <img src="./asset/media/gif/ethnic.gif" width="100%" height="auto"
+                                alt="AI ethics visualization" loading="lazy">
+                            <h3 class="title">AI Ethics</h3>
+                            <p class="description">Exploring responsible AI development</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="featured-articles">
+            <div class="row">
+                <div class="tab full-width">
+                    <div class="card">
+                        <img src="./asset/media/gif/1_wJt3v7Gs46uticTUj4y9zg.gif" width="100%" height="auto"
+                            alt="Technology impact illustration" loading="lazy">
+                        <h3 class="title">The Impact of Technology on Modern Society</h3>
+                        <p class="description">
+                            Technology is a driving force behind innovation, shaping industries...
+                        </p>
+                    </div>
+                </div>
+
+                <div class="tab">
+                    <div class="card">
+                        <img src="./asset/media/gif/deep_learning.gif" width="100%" height="auto"
+                            alt="Future technology visualization" loading="lazy">
+                        <h3 class="title">The Role of Technology in Advancing the Future</h3>
+                        <p class="description">
+                            Technology continues to revolutionize the way we live, work, and interact...
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="tab full-width">
+                    <div class="card">
+                        <img src="./asset/media/gif/1_wJt3v7Gs46uticTUj4y9zg.gif" width="100%" height="auto"
+                            alt="Technology impact illustration" loading="lazy">
+                        <h3 class="title">The Impact of Technology on Modern Society</h3>
+                        <p class="description">
+                            Technology is a driving force behind innovation, shaping industries...
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="video-section" style="padding: 5% 2%; text-align: center;">
+            <h2>Introduction to AI</h2>
+            <p>Watch this video to understand how AI is changing the world.</p>
+            <video controls muted
+                style="border-radius: 25px; box-shadow: 0px -5px 100px 9px rgba(94, 3, 206, 0.309); max-width: 95%; height: auto;"
+                poster="./asset/media/video/video-poster.jpg">
+                <source
+                    src="./asset/media/video/How will Artificial Intelligence and Internet of Things change the world_.mp4"
+                    type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 AI Technology. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // News pages data
+        const newsPages = [
+            "tech-news.html",
+            "sports-update.html",
+            "politics.html",
+            "business.html",
+            "entertainment.html"
+        ];
+
+        /**
+         * Show search suggestions based on user input
+         */
+        function showSuggestions() {
+            const query = document.getElementById("search-box").value.toLowerCase().trim();
+            const suggestionsDiv = document.getElementById("suggestions");
+            suggestionsDiv.innerHTML = "";
+
+            if (query.length === 0) {
+                suggestionsDiv.style.display = "none";
+                return;
+            }
+
+            suggestionsDiv.style.display = "block";
+            const matches = newsPages.filter(page => page.toLowerCase().includes(query));
+
+            if (matches.length > 0) {
+                matches.forEach(match => {
+                    const item = document.createElement("a");
+                    item.href = `news/${match}`;
+                    item.classList.add("list-group-item", "list-group-item-action");
+                    item.setAttribute("role", "option");
+                    item.innerText = match.replace(".html", "").replace(/-/g, " "); // Remove .html and replace hyphens with spaces
+                    suggestionsDiv.appendChild(item);
+                });
+            } else {
+                const noMatch = document.createElement("div");
+                noMatch.classList.add("list-group-item");
+                noMatch.innerText = "No results found";
+                suggestionsDiv.appendChild(noMatch);
+            }
+        }
+
+        // Set up event listener for search box
+        document.addEventListener("DOMContentLoaded", () => {
+            const searchBox = document.getElementById("search-box");
+            if (searchBox) {
+                searchBox.addEventListener("keyup", showSuggestions);
+                searchBox.addEventListener("focus", showSuggestions);
+
+                // Hide suggestions when clicking outside
+                document.addEventListener("click", (e) => {
+                    if (!e.target.closest("#search-box") && !e.target.closest("#suggestions")) {
+                        document.getElementById("suggestions").style.display = "none";
+                    }
+                });
+            }
+        });
+
+        ////////////////////////////////////////////////////
+
+        // Initialize the page when DOM is fully loaded
+        document.addEventListener("DOMContentLoaded", () => {
+            // Remove initial blur after page renders
+            setTimeout(() => {
+                document.body.style.filter = "blur(0px)";
+            }, 50);
+
+            // Show the cookie popup if no consent is found
+            if (!getCookie("cookieConsent")) {
+                document.getElementById("cookie-popup").style.display = "block";
+            }
+
+            // Load theme preference
+            initializeTheme();
+
+            // Set up event listeners for buttons
+            initializeEventListeners();
+
+            // Load header and footer if needed
+            loadHeaderFooter();
+        });
+
+        /**
+         * Initialize theme based on saved preferences
+         */
+        function initializeTheme() {
+            // Get theme from cookie or localStorage, default to dark
+            const theme = getCookie("theme") || localStorage.getItem('theme') || "dark";
+
+            // Apply the theme
+            const themeStyleElement = document.getElementById("theme-style");
+            if (themeStyleElement) {
+                themeStyleElement.setAttribute("href", `./asset/css/${theme}-theme.css`);
+            } else {
+                applyTheme(theme);
+            }
+
+            // Update theme toggle button
+            const themeToggleBtn = document.getElementById("theme-toggle");
+            if (themeToggleBtn) {
+                themeToggleBtn.textContent = theme === "dark" ? "🌙" : "☀️";
+                themeToggleBtn.setAttribute("aria-label", theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode");
+            }
+        }
+
+        /**
+         * Initialize event listeners for interactive elements
+         */
+        function initializeEventListeners() {
+            // Theme toggle button
+            const themeToggleBtn = document.getElementById("theme-toggle");
+            if (themeToggleBtn) {
+                themeToggleBtn.addEventListener("click", toggleTheme);
+            }
+
+            // Clear storage button
+            const clearStorageBtn = document.getElementById("clear-storage");
+            if (clearStorageBtn) {
+                clearStorageBtn.addEventListener("click", clearAllData);
+            }
+
+            // Page transition effect for links
+            document.addEventListener("click", handleLinkClicks);
+        }
+
+        /**
+         * Handle link clicks for page transition effects
+         * @param {Event} event - Click event
+         */
+        function handleLinkClicks(event) {
+            const link = event.target.closest("a");
+            if (link && link.href && !link.hasAttribute("data-no-transition")) {
+                event.preventDefault();
+                document.body.classList.add("blurred");
+
+                setTimeout(() => {
+                    window.location.href = link.href;
+                }, 800); // Reduced from 1000ms for better UX
+            }
+        }
+
+        /**
+         * Toggle between light and dark themes
+         * Changes CSS file, updates icon, and saves preference
+         */
+        function toggleTheme() {
+            // Determine current theme
+            let currentTheme;
+            const themeStyleElement = document.getElementById("theme-style");
+
+            if (themeStyleElement) {
+                currentTheme = themeStyleElement.getAttribute("href").includes("dark") ? "dark" : "light";
+            } else {
+                currentTheme = document.querySelector('link[href*="theme"]:not([disabled])').getAttribute('href').includes('dark') ? 'dark' : 'light';
+            }
+
+            // Set new theme to opposite of current
+            const newTheme = currentTheme === "dark" ? "light" : "dark";
+
+            // Check if cookies are accepted before saving preference
+            if (getCookie("cookieConsent") === "accepted") {
+                // Add blur effect during theme transition
+                document.body.style.filter = "blur(5px)";
+
+                // Apply theme change with transition effect
+                setTimeout(() => {
+                    // Apply theme
+                    if (themeStyleElement) {
+                        themeStyleElement.setAttribute("href", `./asset/css/${newTheme}-theme.css`);
+                    } else {
+                        applyTheme(newTheme);
+                    }
+
+                    // Update theme toggle button
+                    const themeToggleBtn = document.getElementById("theme-toggle");
+                    if (themeToggleBtn) {
+                        themeToggleBtn.textContent = newTheme === "dark" ? "🌙" : "☀️";
+                        themeToggleBtn.setAttribute("aria-label", newTheme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode");
+                    }
+
+                    // Save theme preference
+                    setCookie("theme", newTheme, 365);
+                    localStorage.setItem('theme', newTheme);
+
+                    // Remove blur after theme change
+                    setTimeout(() => {
+                        document.body.style.filter = "blur(0px)";
+                    }, 300);
+                }, 200);
+            } else {
+                // If cookies not accepted, prompt user
+                alert("Please accept the cookies to save your theme settings!");
+            }
+        }
+
+        /**
+         * Apply the specified theme by updating CSS links
+         * @param {string} theme - 'dark' or 'light'
+         */
+        function applyTheme(theme) {
+            // Disable all theme stylesheets
+            const themeLinks = document.querySelectorAll('link[href*="theme"]');
+            themeLinks.forEach(link => {
+                link.disabled = true;
+            });
+
+            // Enable only the selected theme
+            const activeTheme = document.querySelector(`link[href*="${theme}-theme"]`);
+            if (activeTheme) {
+                activeTheme.disabled = false;
+            }
+
+            // Update theme toggle button
+            const themeToggleBtn = document.getElementById("theme-toggle");
+            if (themeToggleBtn) {
+                themeToggleBtn.textContent = theme === "dark" ? "🌙" : "☀️";
+                themeToggleBtn.setAttribute("aria-label", theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode");
+            }
+        }
+
+        /**
+ * Accept cookies and save user preference
+ */
+        function acceptCookies() {
+            // 设置 cookie，确保使用正确的路径和编码
+            setCookie("cookieConsent", "accepted", 365);
+
+            // 确保弹窗元素存在后再操作
+            const cookiePopup = document.getElementById("cookie-popup");
+            if (cookiePopup) {
+                // 使用 display: none 隐藏弹窗
+                cookiePopup.style.display = "none";
+            }
+
+            // 保存当前主题到 cookie，现在我们有了同意
+            const currentTheme = localStorage.getItem('theme') || "dark";
+            setCookie("theme", currentTheme, 365);
+
+            // 添加调试日志
+            console.log("Cookies accepted, cookie set: " + document.cookie);
+        }
+
+        /**
+         * Decline cookies but remember choice
+         */
+        function declineCookies() {
+            // 设置 cookie，确保使用正确的路径和编码
+            setCookie("cookieConsent", "declined", 365);
+
+            // 确保弹窗元素存在后再操作
+            const cookiePopup = document.getElementById("cookie-popup");
+            if (cookiePopup) {
+                // 使用 display: none 隐藏弹窗
+                cookiePopup.style.display = "none";
+            }
+
+            // 添加调试日志
+            console.log("Cookies declined, cookie set: " + document.cookie);
+        }
+
+        // 页面加载时检查 cookie 状态
+        document.addEventListener("DOMContentLoaded", () => {
+            // 其他初始化代码...
+
+            // 检查 cookie 同意状态
+            const cookieConsent = getCookie("cookieConsent");
+            const cookiePopup = document.getElementById("cookie-popup");
+
+            console.log("Cookie consent status:", cookieConsent);
+
+            if (cookiePopup) {
+                if (!cookieConsent) {
+                    cookiePopup.style.display = "block";
+                } else {
+                    cookiePopup.style.display = "none";
+                }
+            }
+
+            // 其他初始化代码...
+        });
+
+        /**
+         * 设置 cookie，确保正确编码和安全设置
+         */
+        function setCookie(name, value, days) {
+            let expires = "";
+            if (days) {
+                const date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            // 使用 encodeURIComponent 确保值被正确编码
+            // 添加 SameSite=Lax 提高安全性
+            document.cookie = name + "=" + encodeURIComponent(value) + expires + "; path=/; SameSite=Lax";
+        }
+
+        /**
+         * 获取 cookie 值
+         */
+        function getCookie(name) {
+            const nameEQ = name + "=";
+            const ca = document.cookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) === ' ') c = c.substring(1);
+                if (c.indexOf(nameEQ) === 0) {
+                    // 确保正确解码 cookie 值
+                    return decodeURIComponent(c.substring(nameEQ.length));
+                }
+            }
+            return null;
+        }
+    </script>
+
+</body>
+
+</html>

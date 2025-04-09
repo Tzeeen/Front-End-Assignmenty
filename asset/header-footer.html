@@ -1,0 +1,95 @@
+<!--
+<header>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html">
+                <img src="./logo.png" alt="Logo" class="logo">
+            </a>
+            <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+            <label for="menu-toggle" class="menu-icon">☰</label>
+            <ul class="nav-menu">
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="tools.html">Tools</a></li>
+                <li><a href="resources.html">Resource Tutorial</a></li>
+                <li><a href="forum.html">Forum</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+            <button id="theme-toggle" class="theme-toggle">🌙</button>
+        </div>
+    </nav>
+</header>
+
+<footer>
+    <p>&copy; 2025 Tech Innovators</p>
+</footer>
+
+<div id="cookie-popup" class="cookie-popup">
+    <span style="color:black;">This website uses cookies to enhance the user experience. Do you accept?</span>
+    <br>
+    <button class="accept-btn" onclick="acceptCookies()">Agree</button>
+    <button class="decline-btn" onclick="declineCookies()">Disagree</button>
+</div>
+-->
+
+<header>
+    <nav>
+        <div class="nav-container">
+            <!-- Logo -->
+            <a href="index.html">
+                <img src="./logo.png" alt="Logo" class="logo">
+            </a>
+
+            <!-- Use a table to create a horizontal layout. -->
+            <table>
+                <tr>
+                    <!-- Search box -->
+                    <th>
+                        <div class="search-container position-relative">
+                            <input type="text" id="search-box" class="form-control" placeholder="Search News..."
+                                onkeyup="showSuggestions()" style="border-radius:15px; margin-left:-25px;">
+                            <div id="suggestions" class="list-group position-absolute w-100"></div>
+                        </div>
+                    </th>
+
+                    <!-- Menu -->
+                    <th>
+                        <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+                        <label for="menu-toggle" class="menu-icon">☰</label>
+                        <ul class="nav-menu">
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="news.html">News</a></li>
+                            <li><a href="tools.html">Tools</a></li>
+                            <li><a href="resources.html">Resource Tutorial</a></li>
+                            <li><a href="forum.html">Forum</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                        </ul>
+                    </th>
+
+                    <!-- Clear Cache Button -->
+                    <th>
+                        <button id="clear-storage" class="clear-storage" style="
+                font-size: 1.2rem;
+                cursor: pointer;
+                border: none;
+                background: transparent;
+                margin-right: -23px;" title="Clear all Cookies and LocalStorage.">🗑️</button>
+                    </th>
+
+                    <!-- Theme Toggle Button -->
+                    <th>
+                        <button id="theme-toggle" class="theme-toggle" title="Theme"
+                            style="margin-right: -20px;">🌙</button>
+                    </th>
+                </tr>
+            </table>
+        </div>
+    </nav>
+</header>
+
+<div id="cookie-popup" class="cookie-popup" style="display:none;">
+    <span style="color:black;">This website uses cookies to enhance the user experience. Do you accept?</span>
+    <br>
+    <button class="accept-btn" onclick="acceptCookies()">Agree</button>
+    <button class="decline-btn" onclick="declineCookies()">Disagree</button>
+</div>

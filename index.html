@@ -4,88 +4,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>News - Tech Innovators</title>
+    <title>Home - My Website</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Audiowide&family=Press+Start+2P&display=swap"
         rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="chatbot.css" />
-    <link rel="stylesheet" type="text/css" href="header-footer.css" />
-    <link rel="stylesheet" type="text/css" href="mobile-support-header.css" />
-
+    <link rel="stylesheet" type="text/css" href="./asset/css/dark-theme.css" />
+    <link rel="stylesheet" type="text/css" href="./asset/css/light-theme.css" />
+    <link rel="stylesheet" type="text/css" href="./asset/css/style.css" />
 </head>
 
 <body>
-    <!--<header style="box-shadow: 0px 25px 50px rgba(255, 0, 157, 0.239);">
-        <nav>
-            <ul>
-                <li>
-                    <a href="index.html">
-                        <img src="./image/output-removebg-preview.png" alt="Logo" style="width: 70px;">
-                    </a>
-                </li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="news.html">News</a></li>
-                <li><a href="tools.html">Tools</a></li>
-                <li><a href="resources.html">Resource Tutorial</a></li>
-                <li><a href="forum.html">Forum</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
-            </ul>
-        </nav>
-    </header>-->
-
     <header>
         <nav>
             <div class="nav-container">
                 <!-- Logo -->
                 <a href="index.html">
-                    <img src="./image/output-removebg-preview.png" alt="Logo" class="logo">
+                    <img src="./logo.png" alt="Logo" class="logo">
                 </a>
 
-                <!-- 复选框（用于控制菜单显示） -->
-                <input type="checkbox" id="menu-toggle" class="menu-checkbox">
-                <label for="menu-toggle" class="menu-icon">☰</label>
+                <!-- Use a table to create a horizontal layout. -->
+                <table>
+                    <tr>
+                        <!-- Search box -->
+                        <th>
+                            <div class="search-container position-relative">
+                                <input type="text" id="search-box" class="form-control" placeholder="Search News..."
+                                    onkeyup="showSuggestions()" style="border-radius:15px; margin-left:-25px;">
+                                <div id="suggestions" class="list-group position-absolute w-100"></div>
+                            </div>
+                        </th>
 
-                <!-- 导航菜单 -->
-                <ul class="nav-menu">
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="news.html">News</a></li>
-                    <li><a href="tools.html">Tools</a></li>
-                    <li><a href="resources.html">Resource Tutorial</a></li>
-                    <li><a href="forum.html">Forum</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                </ul>
+                        <!-- Menu -->
+                        <th>
+                            <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+                            <label for="menu-toggle" class="menu-icon">☰</label>
+                            <ul class="nav-menu">
+                                <li><a href="about.html">About Us</a></li>
+                                <li><a href="news.html">News</a></li>
+                                <li><a href="tools.html">Tools</a></li>
+                                <li><a href="resources.html">Resource Tutorial</a></li>
+                                <li><a href="forum.html">Forum</a></li>
+                                <li><a href="chatbot.html">Chatbot</a></li>
+                                <li><a href="contact.html">Contact Us</a></li>
+                            </ul>
+                        </th>
+
+                        <!-- Clear Cache Button -->
+                        <th>
+                            <button id="clear-storage" class="clear-storage" style="
+                    font-size: 1.2rem;
+                    cursor: pointer;
+                    border: none;
+                    background: transparent;
+                    margin-right: -23px;" title="Clear all Cookies and LocalStorage.">🗑️</button>
+                        </th>
+
+                        <!-- Theme Toggle Button -->
+                        <th>
+                            <button id="theme-toggle" class="theme-toggle" title="Theme"
+                                style="margin-right: -20px;">🌙</button>
+                        </th>
+                    </tr>
+                </table>
             </div>
         </nav>
     </header>
 
-    <footer>
-        <p>&copy; 2025 Tech Innovators</p>
-    </footer>
-
+    <div id="cookie-popup" class="cookie-popup" style="display:none;">
+        <span style="color:black;">This website uses cookies to enhance the user experience. Do you accept?</span>
+        <br>
+        <button class="accept-btn" onclick="acceptCookies()">Agree</button>
+        <button class="decline-btn" onclick="declineCookies()">Disagree</button>
+    </div>
 
     <main>
         <section class="Title">
 
-            <div style="
-        background: url('./gif/picture1.gif') center/cover no-repeat;
-        color: white;
-        text-align: center;
-        padding: 200px 20px;
-        position: relative;">
+            <div
+                style="background: url('./asset/media/gif/picture1.gif') center/cover no-repeat; padding: 200px 20px; position: relative;">
 
-                <h1 style="
-            font-size: 3rem;
-            font-weight: bold;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);">
-                    <span style="display: inline-block;"></span>
-                </h1>
-
-                <div class="slideShow">
-                    <h1><span class="typing"></span></h1>
-                </div>
-
-                <p style="font-size: 1.2rem; opacity: 0.9;">
+                <p style="font-size: 1.2rem; opacity: 0.9; color:white;">
                     Discover the future of artificial intelligence.
                 </p>
             </div>
@@ -95,7 +93,7 @@
                 <div class="row">
                     <div class="tab">
                         <div class="card">
-                            <img src="./gif/1_wJt3v7Gs46uticTUj4y9zg.gif" width="100%" height="60%"
+                            <img src="/asset/media/gif/1_wJt3v7Gs46uticTUj4y9zg.gif" width="100%" height="60%"
                                 alt="Machine Learning"><br><br>
                             <h3 class="title">Machine Learning</h3>
                             <p class="description">AI-powered algorithms that learn and adapt</p>
@@ -103,126 +101,76 @@
                     </div>
                     <div class="tab">
                         <div class="card">
-                            <img src="./gif/deep_learning.gif" width="100%" height="60%" alt="Deep Learning"><br><br>
+                            <img src="/asset/media/gif/deep_learning.gif" width="100%" height="60%"
+                                alt="Deep Learning"><br><br>
                             <h3 class="title">Deep Learning</h3>
                             <p class="description">Neural networks that mimic the human brain.</p>
                         </div>
                     </div>
                     <div class="tab">
                         <div class="card">
-                            <img src="./gif/ethnic.gif" width="100%" height="60%" alt="AI ethics"><br><br>
+                            <img src="/asset/media/gif/ethnic.gif" width="100%" height="60%" alt="AI ethics"><br><br>
                             <h3 class="title">AI Ethics</h3>
                             <p class="description">Exploring responsible AI development</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="grid">
-                <div class="row">
-                    <div class="tab">
-                        <div class="card">
-                            <img src="./gif/1_wJt3v7Gs46uticTUj4y9zg.gif" width="100%" height="60%"
-                                alt="Machine Learning"><br><br>
-                            <h3 class="title">Machine Learning</h3>
-                            <p class="description">AI-powered algorithms that learn and adapt</p>
-                        </div>
-                    </div>
-                    <div class="tab">
-                        <div class="card">
-                            <img src="./gif/deep_learning.gif" width="100%" height="60%" alt="Deep Learning"><br><br>
-                            <h3 class="title">Deep Learning</h3>
-                            <p class="description">Neural networks that mimic the human brain.</p>
-                        </div>
-                    </div>
+
+        </section style="padding-top:5%;">>
+
+        <div class="row">
+            <!-- 这个格子是全屏的 -->
+            <div class="tab full-width">
+                <div class="card">
+                    <img src="/asset/media/gif/1_wJt3v7Gs46uticTUj4y9zg.gif" width="100%" height="60%"
+                        alt="Machine Learning">
+                    <h3 class="title">The Impact of Technology on Modern Society</h3>
+                    <p class="description">
+                        Technology is a driving force behind innovation, shaping industries...
+                    </p>
                 </div>
             </div>
 
-            <button class="chatbot-btn">💬</button>
-            <div class="chatbot-container">
-                <div class="chatbot-messages"></div>
-                <input type="text" class="chatbot-input" placeholder="Type a message...">
+            <!-- 这个格子保持原来的尺寸 -->
+            <div class="tab">
+                <div class="card">
+                    <img src="/asset/media/gif/deep_learning.gif" width="100%" height="60%" alt="Deep Learning">
+                    <h3 class="title">The Role of Technology in Advancing the Future</h3>
+                    <p class="description">
+                        Technology continues to revolutionize the way we live, work, and interact...
+                    </p>
+                </div>
             </div>
+        </div>
 
+        <div class="row">
+            <!-- 这个格子是全屏的 -->
+            <div class="tab full-width">
+                <div class="card">
+                    <img src="/asset/media/gif/1_wJt3v7Gs46uticTUj4y9zg.gif" width="100%" height="60%"
+                        alt="Machine Learning">
+                    <h3 class="title">The Impact of Technology on Modern Society</h3>
+                    <p class="description">
+                        Technology is a driving force behind innovation, shaping industries...
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <section style="padding: 5% 2%; text-align: center;">
+            <h2>Introduction to AI</h2>
+            <p>Watch this video to understand how AI is changing the world.</p>
+            <video controls autoplay muted loop
+                style="border-radius: 25px; box-shadow: 0px -5px 100px 9px rgba(94, 3, 206, 0.309); max-width: 95%; height: auto;">
+                <source
+                    src="./asset/media/video/How will Artificial Intelligence and Internet of Things change the world_.mp4"
+                    type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
         </section>
-
-            <section style="padding: 5% 2%; text-align: center;">
-                <h2>Introduction to AI</h2>
-                <p>Watch this video to understand how AI is changing the world.</p>
-                <video controls autoplay muted loop
-                    style="border-radius: 25px; box-shadow: 0px -5px 100px 9px rgba(94, 3, 206, 0.309); max-width: 95%; height: auto;">
-                    <source src="How will Artificial Intelligence and Internet of Things change the world_.mp4"
-                        type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </section>
     </main>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            // Typing effect
-            const text = "Welcome to AI Revolution";
-            let i = 0;
-            function typeEffect() {
-                if (i < text.length) {
-                    $(".typing").append(text.charAt(i));
-                    i++;
-                    setTimeout(typeEffect, 100);
-                }
-            }
-            typeEffect();
-
-            // Hide chatbot initially
-            $(".chatbot-container").hide();
-
-            // Toggle chatbot visibility when clicking the button
-            $(".chatbot-btn").click(function () {
-                $(".chatbot-container").toggle();
-            });
-
-            // Handle user input
-            $(".chatbot-input").keypress(async function (event) {
-                if (event.which === 13) { // Enter key pressed
-                    event.preventDefault();
-                    let userMessage = $(this).val().trim();
-                    if (userMessage !== "") {
-                        let chatContainer = $(".chatbot-messages");
-                        chatContainer.append(`<div class='user-message'><strong>You:</strong> ${userMessage}</div>`);
-                        $(this).val("");
-
-                        let botReply = await getBotResponse(userMessage);
-                        chatContainer.append(`<div class='bot-message'><strong>Bot:</strong> ${botReply}</div>`);
-                        chatContainer.scrollTop(chatContainer[0].scrollHeight);
-                    }
-                }
-            });
-
-            async function getBotResponse(input) {
-                const apiKey = "AIzaSyAzBqMOctZamIwmeVA3mEqjLVHyuLz0i_Q"; // 🚨 直接暴露API Key存在风险！
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateText?key=${apiKey}`;
-
-                try {
-                    const response = await fetch(apiUrl, {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({
-                            contents: [{ role: "user", parts: [{ text: input }] }]
-                        })
-                    });
-
-                    const data = await response.json();
-                    console.log("API Response:", data); // Debugging: 检查API返回的数据格式
-
-                    return data?.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I couldn't understand that.";
-                } catch (error) {
-                    console.error("Error fetching AI response:", error);
-                    return "Sorry, I'm having trouble responding right now.";
-                }
-            }
-        });
-    </script>
-    
-    <script src="script.js"></script>
+    <script src="./asset/scripts/scripts.js"></script>
 </body>
 
 </html>

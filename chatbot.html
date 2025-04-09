@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini 聊天机器人</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./asset/css/dark-theme.css" />
+    <link rel="stylesheet" type="text/css" href="./asset/css/light-theme.css" />
+    <link rel="stylesheet" type="text/css" href="./asset/css/style.css" />
+    <style>
+        /* Cookie consent popup styling */
+        .cookie-popup {
+            position: fixed;
+            top: 2%;
+            width: 80%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(270deg, #dcfcfff4, #f4fffbec, #ffd1d1, #ffe7fa);
+            background-size: 300% 300%;
+            animation: gradientAnimation 10s ease infinite;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0px -5px 100px 9px rgba(255, 27, 141, 0.64);
+            text-align: center;
+            z-index: 9999;
+        }
+
+        .cookie-popup button {
+            margin: 5px;
+            padding: 8px 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .accept-btn {
+            background: green;
+            color: white;
+        }
+
+        .decline-btn {
+            background: red;
+            color: white;
+        }
+
+        /* Gemini Chat specific styles */
+        .chat-container {
+            width: 90%;
+            max-width: 800px;
+            height: 80vh;
+            background: linear-gradient(45deg, #000000, #141414);
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1), 0 0 30px rgba(0, 238, 255, 0.3);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+            margin: 20px auto;
+            border: 1px solid rgba(0, 238, 255, 0.2);
+        }
+
+        /* Chat header with gradient animation */
+        .chat-header {
+            background: linear-gradient(270deg, #00eaff, #1100ff, #ff0000, #ff00c8);
+            background-size: 300% 300%;
+            animation: gradientAnimation 10s ease infinite;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        /* Message container area */
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Individual message styling */
+        .message {
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            border-radius: 18px;
+            max-width: 70%;
+            word-wrap: break-word;
+            box-shadow: 0 0 10px rgba(0, 238, 255, 0.1);
+        }
+
+        /* User message styling */
+        .user-message {
+            background: linear-gradient(to right, #001e3c, #003366);
+            color: white;
+            margin-left: auto;
+            border-bottom-right-radius: 5px;
+            border: 1px solid rgba(0, 238, 255, 0.3);
+        }
+
+        /* Bot message styling */
+        .bot-message {
+            background: linear-gradient(to right, #1a1a1a, #2a2a2a);
+            color: #e0e0e0;
+            margin-right: auto;
+            border-bottom-left-radius: 5px;
+            border: 1px solid rgba(255, 0, 200, 0.3);
+        }
+
+        /* Input area styling */
+        .chat-input {
+            display: flex;
+            padding: 15px;
+            background-color: #1a1a1a;
+            border-top: 1px solid rgba(0, 238, 255, 0.3);
+        }
+
+        /* Text input field styling */
+        #user-input {
+            flex: 1;
+            border: 1px solid rgba(0, 238, 255, 0.5);
+            border-radius: 20px;
+            padding: 10px 15px;
+            font-size: 1rem;
+            outline: none;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            font-family: 'Orbitron', Arial, sans-serif;
+        }
+
+        /* Loading indicator styling */
+        .loading {
+            display: none;
+            margin: 10px auto;
+            text-align: center;
+            color: #666;
+        }
+
+        /* Typing dots animation */
+        .typing-indicator {
+            display: inline-block;
+        }
+
+        .typing-indicator span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: #00eaff;
+            border-radius: 50%;
+            margin: 0 2px;
+            animation: typing 1s infinite ease-in-out;
+        }
+
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+            background-color: #1100ff;
+        }
+
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+            background-color: #ff00c8;
+        }
+
+        @keyframes typing {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* Code block styling */
+        pre {
+            white-space: pre-wrap;
+            background-color: #0a0a0a;
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 3px solid #00eaff;
+            overflow-x: auto;
+            color: #00eaff;
+        }
+
+        code {
+            font-family: 'Courier New', monospace;
+            color: #00eaff;
+        }
+
+        /* Settings button styling */
+        .settings-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: transparent;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 0;
+            padding: 5px;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+        }
+
+        /* Settings panel styling */
+        .settings-panel {
+            display: none;
+            position: absolute;
+            top: 50px;
+            right: 15px;
+            background: linear-gradient(45deg, #0a0a0a, #1a1a1a);
+            box-shadow: 0 2px 10px rgba(0, 238, 255, 0.3), 0 0 20px rgba(255, 0, 200, 0.2);
+            border-radius: 5px;
+            padding: 15px;
+            z-index: 100;
+            width: 280px;
+            border: 1px solid rgba(0, 238, 255, 0.3);
+        }
+
+        .settings-panel label {
+            display: block;
+            margin-bottom: 5px;
+            color: #00eaff;
+        }
+
+        .settings-panel input,
+        .settings-panel select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(0, 238, 255, 0.5);
+            border-radius: 4px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            font-family: 'Orbitron', Arial, sans-serif;
+        }
+
+        .settings-panel button {
+            width: 100%;
+        }
+
+        /* Error message styling */
+        .error-message {
+            color: #ff0055;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            text-shadow: 0 0 5px rgba(255, 0, 85, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <!-- Logo -->
+                <a href="index.html">
+                    <img src="./logo.png" alt="Logo" class="logo">
+                </a>
+    
+                <!-- Use a table to create a horizontal layout. -->
+                <table>
+                    <tr>
+                        <!-- Search box -->
+                        <th>
+                            <div class="search-container position-relative">
+                                <input type="text" id="search-box" class="form-control" placeholder="Search News..."
+                                    onkeyup="showSuggestions()" style="border-radius:15px; margin-left:-25px;">
+                                <div id="suggestions" class="list-group position-absolute w-100"></div>
+                            </div>
+                        </th>
+    
+                        <!-- Menu -->
+                        <th>
+                            <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+                            <label for="menu-toggle" class="menu-icon">☰</label>
+                            <ul class="nav-menu">
+                                <li><a href="about.html">About Us</a></li>
+                                <li><a href="news.html">News</a></li>
+                                <li><a href="tools.html">Tools</a></li>
+                                <li><a href="resources.html">Resource Tutorial</a></li>
+                                <li><a href="forum.html">Forum</a></li>
+                                <li><a href="chatbot.html">Chatbot</a></li>
+                                <li><a href="contact.html">Contact Us</a></li>
+                            </ul>
+                        </th>
+    
+                        <!-- Clear Cache Button -->
+                        <th>
+                            <button id="clear-storage" class="clear-storage" style="
+                    font-size: 1.2rem;
+                    cursor: pointer;
+                    border: none;
+                    background: transparent;
+                    margin-right: -23px;" title="Clear all Cookies and LocalStorage.">🗑️</button>
+                        </th>
+    
+                        <!-- Theme Toggle Button -->
+                        <th>
+                            <button id="theme-toggle" class="theme-toggle" title="Theme"
+                                style="margin-right: -20px;">🌙</button>
+                        </th>
+                    </tr>
+                </table>
+            </div>
+        </nav>
+    </header>
+    
+    <div id="cookie-popup" class="cookie-popup" style="display:none;">
+        <span style="color:black;">This website uses cookies to enhance the user experience. Do you accept?</span>
+        <br>
+        <button class="accept-btn" onclick="acceptCookies()">Agree</button>
+        <button class="decline-btn" onclick="declineCookies()">Disagree</button>
+    </div>
+
+    <!-- Main chat container -->
+    <main>
+        <div class="chat-container">
+            <div class="chat-header">
+                Gemini Chatbot
+                <button id="settings-btn" class="settings-btn">⚙️</button>
+            </div>
+
+            <!-- Settings panel -->
+            <div class="settings-panel" id="settings-panel">
+                <label for="api-key">Gemini API Key:</label>
+                <input type="password" id="api-key" placeholder="Enter your API key.">
+
+                <label for="model-select">Model:</label>
+                <select id="model-select">
+                    <option value="gemini-pro">gemini-pro</option>
+                    <option value="gemini-1.5-pro">gemini-1.5-pro</option>
+                    <option value="gemini-1.5-flash">gemini-1.5-flash</option>
+                    <option value="gemini-1.5-pro-latest">gemini-1.5-pro-latest</option>
+                    <option value="gemini-pro-vision">gemini-pro-vision</option>
+                </select>
+
+                <label for="temperature">Temperature (0.0-1.0):</label>
+                <input type="number" id="temperature" min="0" max="1" step="0.1" value="0.7">
+
+                <div id="error-display" class="error-message"></div>
+
+                <button id="save-settings">Save Settings</button>
+            </div>
+
+            <!-- Chat messages area -->
+            <div class="chat-messages" id="chat-messages">
+                <div class="message bot-message">
+                    Hello! I’m a chatbot powered by the Google Gemini API. How can I assist you today?
+                </div>
+            </div>
+
+            <!-- Loading indicator -->
+            <div class="loading" id="loading">
+                <div class="typing-indicator">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+
+            <!-- Chat input area -->
+            <div class="chat-input">
+                <input type="text" id="user-input" placeholder="在这里输入消息..." autocomplete="off">
+                <button id="send-button">Send</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        $(document).ready(function () {
+            // Configuration stored in localStorage
+            let apiKey = localStorage.getItem('gemini_api_key') || '';
+            let model = localStorage.getItem('gemini_model') || 'gemini-pro';
+            let temperature = localStorage.getItem('gemini_temperature') || 0.7;
+
+            // Store conversation history
+            let conversationHistory = [{
+                role: "model",
+                parts: [{ text: "Hello! I’m a chatbot powered by the Google Gemini API. How can I help you today?" }]
+            }];
+
+            // Set initial values
+            $('#api-key').val(apiKey);
+            $('#model-select').val(model);
+            $('#temperature').val(temperature);
+
+            // Settings panel toggle
+            $('#settings-btn').click(function () {
+                $('#settings-panel').toggle();
+            });
+
+            // Save settings
+            $('#save-settings').click(function () {
+                apiKey = $('#api-key').val();
+                model = $('#model-select').val();
+                temperature = $('#temperature').val();
+
+                localStorage.setItem('gemini_api_key', apiKey);
+                localStorage.setItem('gemini_model', model);
+                localStorage.setItem('gemini_temperature', temperature);
+
+                $('#settings-panel').hide();
+                $('#error-display').text('');
+
+                // Confirmation message
+                addMessageToChat('bot', 'Settings saved! Current model in use:' + model);
+            });
+
+            // Close settings panel when clicking outside
+            $(document).click(function (event) {
+                if (!$(event.target).closest('#settings-panel').length &&
+                    !$(event.target).is('#settings-btn')) {
+                    $('#settings-panel').hide();
+                }
+            });
+
+            // Send message function
+            function sendMessage() {
+                const userMessage = $('#user-input').val().trim();
+
+                if (!userMessage) return;
+
+                // Display user message
+                addMessageToChat('user', userMessage);
+                $('#user-input').val('');
+
+                // Add to conversation history
+                conversationHistory.push({
+                    role: "user",
+                    parts: [{ text: userMessage }]
+                });
+
+                // Check for API key
+                if (!apiKey) {
+                    addMessageToChat('bot', 'Please configure your Gemini API key in the settings first.');
+                    return;
+                }
+
+                // Show loading indicator
+                $('#loading').show();
+
+                // Prepare request data
+                const requestData = {
+                    contents: conversationHistory,
+                    generationConfig: {
+                        temperature: parseFloat(temperature),
+                        topK: 40,
+                        topP: 0.95,
+                        maxOutputTokens: 1024,
+                    }
+                };
+
+                let apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+
+                // Send request to Gemini API
+                $.ajax({
+                    url: apiUrl,
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(requestData),
+                    success: function (data) {
+                        if (data.candidates && data.candidates[0].content) {
+                            const botResponse = data.candidates[0].content.parts[0].text;
+
+                            // Add bot response to chat
+                            addMessageToChat('bot', botResponse);
+
+                            // Update conversation history
+                            conversationHistory.push({
+                                role: "model",
+                                parts: [{ text: botResponse }]
+                            });
+                        } else {
+                            throw new Error('No valid response received.');
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('API call error: ', error);
+
+                        let errorMessage = 'Unknown error.';
+                        try {
+                            const errorResponse = JSON.parse(xhr.responseText);
+                            errorMessage = errorResponse.error?.message || 'Request failed.';
+                        } catch (e) {
+                            errorMessage = error || 'Network error.';
+                        }
+
+                        addMessageToChat('bot', `Sorry, an error occurred: ${errorMessage}`);
+                        $('#error-display').text(`Last error: ${errorMessage}`);
+                    },
+                    complete: function () {
+                        // Hide loading indicator
+                        $('#loading').hide();
+                    }
+                });
+            }
+
+            // Try to fetch available models
+            function fetchAvailableModels() {
+                if (!apiKey) return;
+
+                $.ajax({
+                    url: `https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`,
+                    type: 'GET',
+                    success: function (data) {
+                        // Clear current options
+                        $('#model-select').empty();
+
+                        // Only add text generation models, not embedding models
+                        const supportedModels = data.models.filter(model =>
+                            model.name.includes('gemini') &&
+                            !model.name.includes('embedding') &&
+                            model.supportedGenerationMethods.includes('generateContent')
+                        );
+
+                        $.each(supportedModels, function (i, modelData) {
+                            const modelName = modelData.name.split('/').pop();
+                            $('#model-select').append($('<option>', {
+                                value: modelName,
+                                text: modelName
+                            }));
+                        });
+
+                        // If there's a saved model selection, try to select it
+                        if (model) {
+                            // Check if this model option exists
+                            const exists = $('#model-select option[value="' + model + '"]').length > 0;
+                            if (exists) {
+                                $('#model-select').val(model);
+                            } else {
+                                // If it doesn't exist, select the first option
+                                model = $('#model-select option:first').val();
+                                localStorage.setItem('gemini_model', model);
+                            }
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error retrieving model list: ', error);
+                    }
+                });
+            }
+
+            // Add message to chat interface
+            function addMessageToChat(sender, message) {
+                let messageHtml = '';
+
+                if (sender === 'user') {
+                    messageHtml = $('<div>', {
+                        'class': 'message user-message',
+                        text: message
+                    });
+                } else {
+                    // Process code blocks
+                    message = message.replace(/```([\s\S]*?)```/g, function (match, code) {
+                        return '<pre><code>' + code + '</code></pre>';
+                    });
+
+                    // Process inline code
+                    message = message.replace(/`([^`]+)`/g, '<code>$1</code>');
+
+                    messageHtml = $('<div>', {
+                        'class': 'message bot-message',
+                        html: message
+                    });
+                }
+
+                $('#chat-messages').append(messageHtml);
+
+                // Scroll to bottom
+                $('#chat-messages').scrollTop($('#chat-messages')[0].scrollHeight);
+            }
+
+            // Event listeners
+            $('#send-button').click(sendMessage);
+
+            $('#user-input').keypress(function (e) {
+                if (e.which === 13) { // Enter key
+                    sendMessage();
+                }
+            });
+
+            // Try to fetch model list
+            if (apiKey) {
+                fetchAvailableModels();
+            }
+
+            // Check if API key exists
+            if (!apiKey) {
+                $('#settings-panel').show();
+                addMessageToChat('bot', 'Welcome to the Gemini chatbot! Please configure your API key in the settings at the top right first.');
+            }
+        });
+    </script>
+    <script src="./asset/scripts/scripts.js"></script>
+    <!-- 引入 jQuery（CDN） -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</body>
+
+</html>
